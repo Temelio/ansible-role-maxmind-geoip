@@ -1,0 +1,9 @@
+---
+
+# Main tasks file for maxmind-geoip role
+
+- name: 'INIT | Manage variables to use for our target'
+  include: "{{ role_path }}/tasks/manage_variables.yml"
+  tags:
+    - 'role::maxmind-geoip'
+    - 'role::maxmind-geoip::init'
