@@ -1,0 +1,9 @@
+---
+
+# Debian family variables
+#------------------------------------------------------------------------------
+
+_maxmind_geoip_packages:
+  - name: 'geoip-database'
+
+_maxmind_geoip_databases_folder: '/usr/share/GeoIP/'

@@ -46,6 +46,38 @@ $ MOLECULE_DRIVER=vagrant tox
 ### Default role variables
 
 ``` yaml
+# Defaults vars file for maxmind-geoip role
+#------------------------------------------------------------------------------
+
+# Packages management
+maxmind_geoip_packages: "{{ _maxmind_geoip_packages }}"
+maxmind_geoip_package_cache_valid_time: 3600
+
+# Files management
+maxmind_geoip_files_owner: 'root'
+maxmind_geoip_files_group: 'root'
+maxmind_geoip_files_mode: 'u-w,g-w,o-rwx'
+
+
+# Databases updates management
+#------------------------------------------------------------------------------
+
+# General
+maxmind_geoip_update_databases_without_geoipupdate: True
+
+# Without geoipupdate
+maxmind_geoip_archives:
+  base_url: 'http://geolite.maxmind.com/download/geoip/database/'
+  download_folder_path: '/tmp/'
+  files_names:
+    - 'GeoLite2-ASN.tar.gz'
+    - 'GeoLite2-City.tar.gz'
+    - 'GeoLite2-Country.tar.gz'
+  force_unarchive: False
+  timeout: 30
+maxmind_geoip_databases:
+  dest_folder_path: "{{ _maxmind_geoip_databases_folder }}"
+  extension: '.mmdb'
 ```
 
 ## Dependencies
