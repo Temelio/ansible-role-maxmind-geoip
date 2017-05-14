@@ -19,7 +19,7 @@ maxmind_geoip_files_mode: 'u-w,g-w,o-rwx'
 #------------------------------------------------------------------------------
 
 # General
-maxmind_geoip_update_databases_without_geoipupdate: True
+maxmind_geoip_update_databases_without_geoipupdate: False
 
 # Without geoipupdate
 maxmind_geoip_archives:

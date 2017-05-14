@@ -17,6 +17,15 @@
     - 'role::maxmind-geoip::install'
 
 
+- name: 'UPDATE DATABASES | Databases update tasks using geoipupdate'
+  include: "{{ role_path }}/tasks/update/update_with_geoipupdate.yml"
+  become: True
+  when: 'maxmind_geoip_update_databases_with_geoipupdate'
+  tags:
+    - 'role::maxmind-geoip'
+    - 'role::maxmind-geoip::update-databases'
+
+
 - name: 'UPDATE DATABASES | Databases update tasks without using geoipupdate'
   include: "{{ role_path }}/tasks/update/update_without_geoipupdate.yml"
   become: True
