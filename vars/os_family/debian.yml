@@ -6,4 +6,7 @@
 _maxmind_geoip_packages:
   - name: 'geoip-database'
 
+_maxmind_geoip_system_prerequisites:
+  - name: 'ca-certificates'
+
 _maxmind_geoip_databases_folder: '/usr/share/GeoIP/'

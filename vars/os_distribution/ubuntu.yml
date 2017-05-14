@@ -1,0 +1,7 @@
+---
+
+# Ubuntu distributions variables
+#------------------------------------------------------------------------------
+
+_maxmind_geoip_repositories:
+  - repo: 'ppa:maxmind/ppa'

@@ -3,10 +3,26 @@
 # Install tasks for Debian family
 #------------------------------------------------------------------------------
 
+- name: 'INSTALL | APT | Install MaxMind GeoIP system prerequisites'
+  apt:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
+    update_cache: True
+    cache_valid_time: "{{ maxmind_geoip_package_cache_valid_time }}"
+  with_items: "{{ maxmind_geoip_system_prerequisites }}"
+
+
+- name: 'INSTALL | APT | Manage repositories'
+  apt_repository:
+    codename: "{{ item.codename | default(omit) }}"
+    repo: "{{ item.repo }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ maxmind_geoip_repositories }}"
+
+
 - name: 'INSTALL | APT | Install MaxMind GeoIP packages'
   apt:
     name: "{{ item.name }}"
-    version: "{{ item.version | default(omit) }}"
     state: "{{ item.state | default('present') }}"
     update_cache: True
     cache_valid_time: "{{ maxmind_geoip_package_cache_valid_time }}"

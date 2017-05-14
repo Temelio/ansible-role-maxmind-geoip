@@ -6,6 +6,8 @@
 # Packages management
 maxmind_geoip_packages: "{{ _maxmind_geoip_packages }}"
 maxmind_geoip_package_cache_valid_time: 3600
+maxmind_geoip_repositories: "{{ _maxmind_geoip_repositories | default([]) }}"
+maxmind_geoip_system_prerequisites: "{{ _maxmind_geoip_system_prerequisites | default([]) }}"
 
 # Files management
 maxmind_geoip_files_owner: 'root'
