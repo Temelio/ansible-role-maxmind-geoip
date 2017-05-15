@@ -12,5 +12,23 @@
     mode: "{{ maxmind_geoip_files_mode }}"
 
 
-- name: 'INSTALL | Run databases update'
-  command: '/usr/local/bin/geoipupdate'
+- name: 'INSTALL | Ensure Geoipupdate configuration folder exists'
+  file:
+    path: "{{ maxmind_geoip_configuration_folder_path }}"
+    owner: 'root'
+    group: 'root'
+    mode: '0750'
+    state: 'directory'
+
+
+- name: 'CONFIG | Manage geoipupdate configuration file'
+  template:
+    src: "{{ role_path }}/templates/geoipupdate.conf.j2"
+    dest: "{{ maxmind_geoip_configuration_folder_path }}/geoipupdate.conf"
+    owner: 'root'
+    group: 'root'
+    mode: '0640'
+
+
+- name: 'UPDATE | Run databases update'
+  command: '/usr/bin/geoipupdate -f {{ maxmind_geoip_configuration_folder_path }}/geoipupdate.conf -d {{ _maxmind_geoip_databases_folder }}'

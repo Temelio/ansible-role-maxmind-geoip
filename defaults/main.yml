@@ -20,6 +20,7 @@ maxmind_geoip_files_mode: 'u-w,g-w,o-rwx'
 
 # General
 maxmind_geoip_update_databases_without_geoipupdate: False
+maxmind_geoip_update_databases_with_geoipupdate: True
 
 # Without geoipupdate
 maxmind_geoip_archives:
@@ -34,3 +35,15 @@ maxmind_geoip_archives:
 maxmind_geoip_databases:
   dest_folder_path: "{{ _maxmind_geoip_databases_folder }}"
   extension: '.mmdb'
+
+# With geoipupdate
+maxmind_geoip_geoipupdate_user_id: 999999
+maxmind_geoip_geoipupdate_license_key: 000000000000
+maxmind_geoip_geoipupdate_product_ids:
+  - 'GeoLite2-Country'
+  - 'GeoLite-Legacy-IPv6-City'
+  - 'GeoLite-Legacy-IPv6-Country'
+  - 506
+  - 517
+  - 533
+maxmind_geoip_configuration_folder_path: "{{ _maxmind_geoip_configuration_folder_path }}"

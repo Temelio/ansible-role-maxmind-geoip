@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+
+UserId {{ maxmind_geoip_geoipupdate_user_id }}
+LicenseKey {{ maxmind_geoip_geoipupdate_license_key }}
+ProductIds {{ maxmind_geoip_geoipupdate_product_ids | join(' ') }}

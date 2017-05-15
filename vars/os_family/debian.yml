@@ -5,8 +5,11 @@
 
 _maxmind_geoip_packages:
   - name: 'geoip-database'
+  - name: 'geoip-bin'
+  - name: 'geoipupdate'
 
 _maxmind_geoip_system_prerequisites:
   - name: 'ca-certificates'
 
 _maxmind_geoip_databases_folder: '/usr/share/GeoIP/'
+_maxmind_geoip_configuration_folder_path: '/etc/geoip/'
