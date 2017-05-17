@@ -37,6 +37,7 @@ maxmind_geoip_databases:
   extension: '.mmdb'
 
 # With geoipupdate
+maxmind_geoip_geoipupdate_managed: "{{ _maxmind_geoip_geoipupdate_managed }}"
 maxmind_geoip_geoipupdate_user_id: 999999
 maxmind_geoip_geoipupdate_license_key: 000000000000
 maxmind_geoip_geoipupdate_product_ids:

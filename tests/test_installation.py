@@ -14,9 +14,16 @@ def test_packages(host):
 
     packages = []
 
-    if host.system_info.distribution in ('debian', 'ubuntu'):
+    if host.system_info.distribution == 'debian':
         packages = [
             'geoip-database',
+            'geoip-bin',
+        ]
+    elif host.system_info.distribution == 'ubuntu':
+        packages = [
+            'geoip-database',
+            'geoip-bin',
+            'geoipupdate',
         ]
 
     for package in packages:
