@@ -1,0 +1,55 @@
+---
+
+# Databases update tasks without geoipupdate
+#------------------------------------------------------------------------------
+
+- name: 'INSTALL | Ensure database folder path exists'
+  file:
+    dest: "{{ maxmind_geoip_databases.dest_folder_path }}"
+    state: 'directory'
+    owner: "{{ maxmind_geoip_files_owner }}"
+    group: "{{ maxmind_geoip_files_group }}"
+    mode: "{{ maxmind_geoip_files_mode }}"
+
+
+- name: 'INSTALL | Download databases archives'
+  get_url:
+    url: "{{ maxmind_geoip_archives.base_url + item }}"
+    dest: "{{ maxmind_geoip_archives.download_folder_path }}"
+    owner: "{{ maxmind_geoip_files_owner }}"
+    group: "{{ maxmind_geoip_files_group }}"
+    mode: "{{ maxmind_geoip_files_mode }}"
+    timeout: "{{ maxmind_geoip_archives.timeout }}"
+  register: 'maxmind_geoip_checks_database_download'
+  with_items: "{{ maxmind_geoip_archives.files_names }}"
+
+
+- name: 'INSTALL | Extract databases archives'
+  unarchive:
+    src: "{{ item.dest }}"
+    dest: "{{ maxmind_geoip_databases.dest_folder_path }}"
+    copy: "{{ ansible_version.full | version_compare('2.2', '<') | ternary(False, omit) }}"
+    remote_src: "{{ ansible_version.full | version_compare('2.2', '>=') | ternary(True, omit) }}"
+    list_files: True
+    owner: "{{ maxmind_geoip_files_owner }}"
+    group: "{{ maxmind_geoip_files_group }}"
+    mode: "{{ maxmind_geoip_files_mode }}"
+  no_log: True
+  register: 'maxmind_geoip_checks_database_unarchive'
+  with_items: "{{ maxmind_geoip_checks_database_download.results }}"
+  when: 'item.changed or maxmind_geoip_archives.force_unarchive'
+
+
+- name: 'INSTALL | Manage links to current databases'
+  file:
+    src: "{{ maxmind_geoip_databases.dest_folder_path + item.1 }}"
+    dest: "{{ maxmind_geoip_databases.dest_folder_path + (item.1 | basename) }}"
+    owner: "{{ maxmind_geoip_files_owner }}"
+    group: "{{ maxmind_geoip_files_group }}"
+    mode: "{{ maxmind_geoip_files_mode }}"
+    state: 'link'
+  no_log: True
+  with_subelements:
+    - "{{ maxmind_geoip_checks_database_unarchive.results }}"
+    - 'files'
+  when: "maxmind_geoip_databases.extension in item.1"

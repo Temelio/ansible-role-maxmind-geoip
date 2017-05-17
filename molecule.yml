@@ -1,0 +1,69 @@
+---
+
+ansible:
+  extra_vars:
+    ansible_python_interpreter: '/usr/bin/env python2.7'
+  raw_env_vars:
+    ANSIBLE_NOCOWS: 1
+  group_vars:
+    all:
+      maxmind_geoip_update_databases: True
+  host_vars:
+    maxmind-geoip-docker-jessie:
+      maxmind_geoip_update_databases_with_geoipupdate: False
+    maxmind-geoip-docker-trusty:
+      maxmind_geoip_geoipupdate_changed_when: False
+      maxmind_geoip_update_databases_with_geoipupdate: True
+    maxmind-geoip-docker-xenial:
+      maxmind_geoip_geoipupdate_changed_when: False
+      maxmind_geoip_update_databases_with_geoipupdate: True
+dependency:
+  name: 'galaxy'
+driver:
+  name: 'docker'
+docker:
+  containers:
+    - name: 'maxmind-geoip-docker-jessie'
+      image: 'debian'
+      image_version: 'jessie'
+    - name: 'maxmind-geoip-docker-trusty'
+      image: 'ubuntu'
+      image_version: 'trusty'
+    - name: 'maxmind-geoip-docker-xenial'
+      image: 'ubuntu'
+      image_version: 'xenial'
+molecule:
+  ignore_paths:
+    - '.git'
+    - '.molecule'
+    - '.tox'
+    - '.vagrant'
+vagrant:
+  platforms:
+    - name: 'jessie64'
+      box: 'debian/jessie64'
+      linked_clone: True
+    - name: 'trusty64'
+      box: 'ubuntu/trusty64'
+      linked_clone: True
+    - name: 'xenial64'
+      box: 'ubuntu/xenial64'
+      linked_clone: True
+  providers:
+    - name: 'virtualbox'
+      type: 'virtualbox'
+      options:
+        memory: 512
+        cpus: 1
+  instances:
+    - name: 'maxmind-geoip-vagrant'
+      interfaces:
+        - network_name: 'private_network'
+          type: 'dhcp'
+          auto_config: True
+      options:
+        append_platform_to_hostname: True
+verifier:
+  name: 'testinfra'
+  options:
+    sudo: True
