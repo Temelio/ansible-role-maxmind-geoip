@@ -6,7 +6,17 @@ ansible:
   raw_env_vars:
     ANSIBLE_NOCOWS: 1
   group_vars:
-    all: {}
+    all:
+      maxmind_geoip_update_databases: True
+  host_vars:
+    maxmind-geoip-docker-jessie:
+      maxmind_geoip_update_databases_with_geoipupdate: False
+    maxmind-geoip-docker-trusty:
+      maxmind_geoip_geoipupdate_changed_when: False
+      maxmind_geoip_update_databases_with_geoipupdate: True
+    maxmind-geoip-docker-xenial:
+      maxmind_geoip_geoipupdate_changed_when: False
+      maxmind_geoip_update_databases_with_geoipupdate: True
 dependency:
   name: 'galaxy'
 driver:

@@ -1,0 +1,35 @@
+---
+
+# Databases update tasks with geoipupdate
+#------------------------------------------------------------------------------
+
+- name: 'INSTALL | Ensure database folder path exists'
+  file:
+    dest: "{{ maxmind_geoip_databases.dest_folder_path }}"
+    state: 'directory'
+    owner: "{{ maxmind_geoip_files_owner }}"
+    group: "{{ maxmind_geoip_files_group }}"
+    mode: "{{ maxmind_geoip_files_mode }}"
+
+
+- name: 'INSTALL | Ensure Geoipupdate configuration folder exists'
+  file:
+    path: "{{ maxmind_geoip_configuration_folder_path }}"
+    owner: 'root'
+    group: 'root'
+    mode: '0750'
+    state: 'directory'
+
+
+- name: 'CONFIG | Manage geoipupdate configuration file'
+  template:
+    src: "{{ role_path }}/templates/geoipupdate.conf.j2"
+    dest: "{{ maxmind_geoip_configuration_folder_path }}/geoipupdate.conf"
+    owner: 'root'
+    group: 'root'
+    mode: '0640'
+
+
+- name: 'UPDATE | Run databases update'
+  command: '/usr/bin/geoipupdate -f {{ maxmind_geoip_configuration_folder_path }}/geoipupdate.conf'
+  changed_when: 'maxmind_geoip_geoipupdate_changed_when'
