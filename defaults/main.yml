@@ -19,6 +19,7 @@ maxmind_geoip_files_mode: 'u-w,g-w,o-rwx'
 #------------------------------------------------------------------------------
 
 # General
+maxmind_geoip_databases_folder: "{{ _maxmind_geoip_databases_folder | default('/usr/share/GeoIP') }}"
 maxmind_geoip_update_databases: True
 maxmind_geoip_update_databases_with_geoipupdate: True
 
@@ -33,14 +34,22 @@ maxmind_geoip_archives:
   force_unarchive: False
   timeout: 30
 maxmind_geoip_databases:
-  dest_folder_path: "{{ _maxmind_geoip_databases_folder }}"
+  dest_folder_path: "{{ maxmind_geoip_databases_folder }}"
   extension: '.mmdb'
 
 # With geoipupdate
 maxmind_geoip_geoipupdate_managed: "{{ _maxmind_geoip_geoipupdate_managed }}"
+maxmind_geoip_geoipupdate_changed_when: omit
+maxmind_geoip_geoipupdate_host: 'updates.maxmind.com'
+maxmind_geoip_geoipupdate_protocol: 'https'
+maxmind_geoip_geoipupdate_proxy: ''
+maxmind_geoip_geoipupdate_proxy_user_password: ''
+maxmind_geoip_geoipupdate_skip_peer_verification: 0
+maxmind_geoip_geoipupdate_skip_hostname_verification: 0
 maxmind_geoip_geoipupdate_user_id: 999999
-maxmind_geoip_geoipupdate_license_key: 000000000000
+maxmind_geoip_geoipupdate_license_key: '000000000000'
 maxmind_geoip_geoipupdate_product_ids:
+  - 'GeoLite2-City'
   - 'GeoLite2-Country'
   - 'GeoLite-Legacy-IPv6-City'
   - 'GeoLite-Legacy-IPv6-Country'

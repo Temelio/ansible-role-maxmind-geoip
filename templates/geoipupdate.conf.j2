@@ -3,3 +3,16 @@
 UserId {{ maxmind_geoip_geoipupdate_user_id }}
 LicenseKey {{ maxmind_geoip_geoipupdate_license_key }}
 ProductIds {{ maxmind_geoip_geoipupdate_product_ids | join(' ') }}
+DatabaseDirectory {{ maxmind_geoip_databases_folder }}
+Host {{ maxmind_geoip_geoipupdate_host }}
+Protocol {{ maxmind_geoip_geoipupdate_protocol }}
+{% if maxmind_geoip_geoipupdate_proxy != '' %}
+Proxy {{ maxmind_geoip_geoipupdate_proxy }}
+{% endif %}
+{% if maxmind_geoip_geoipupdate_proxy_user_password != '' %}
+ProxyUserPassword {{ maxmind_geoip_geoipupdate_proxy_user_password }}
+{% endif %}
+{% if maxmind_geoip_geoipupdate_protocol == 'https' %}
+SkipPeerVerification {{ maxmind_geoip_geoipupdate_skip_peer_verification }}
+SkipHostnameVerification {{ maxmind_geoip_geoipupdate_skip_hostname_verification }}
+{% endif %}
