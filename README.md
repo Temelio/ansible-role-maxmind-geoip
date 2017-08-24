@@ -156,9 +156,11 @@ None
 
 ## Example Playbook
 
-    - hosts: servers
-      roles:
-         - { role: Temelio.maxmind-geoip }
+``` yaml
+- hosts: servers
+  roles:
+     - { role: Temelio.maxmind-geoip }
+```
 
 ## License
 
@@ -169,4 +171,3 @@ MIT
 Alexandre Chaussier (for Temelio company)
 - http://www.temelio.com
 - alexandre.chaussier [at] temelio.com
-
