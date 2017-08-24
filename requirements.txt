@@ -1,6 +1,6 @@
-docker==2.2.1
+docker==2.3.0
 molecule==1.24.0
-pytest==3.0.6
-python-vagrant==0.5.14
-testinfra==1.6.0
-tox==2.6.0
+pytest==3.0.7
+python-vagrant==0.5.15
+testinfra==1.6.2
+tox==2.7.0
