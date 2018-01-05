@@ -2,8 +2,8 @@
 
 # Role tests
 
-- hosts: 'maxmind-geoip-vagrant-xenial64:maxmind-geoip-docker-xenial'
-  name: 'Install tests prerequisites'
+- name: 'Converge | Prerequisites tasks'
+  hosts: 'maxmind-geoip-docker-xenial'
   gather_facts: False
   tasks:
     - name: 'PREREQUISITES | APT | Do an apt-get update'
@@ -16,8 +16,7 @@
       changed_when: False
 
 
-- hosts: 'all'
+- name: 'Converge | Main tasks'
+  hosts: 'all'
   roles:
-    - role: "{{ role_name }}"
-  vars:
-    role_name: "{{ playbook_dir | basename }}"
+    - role: "ansible-role-maxmind-geoip"
