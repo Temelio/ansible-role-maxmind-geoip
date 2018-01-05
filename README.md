@@ -1,6 +1,10 @@
 # maxmind-geoip
 
-[![Build Status](https://travis-ci.org/Temelio/ansible-role-maxmind-geoip.svg?branch=master)](https://travis-ci.org/Temelio/ansible-role-maxmind-geoip)
+[![Build Status](https://img.shields.io/travis/Temelio/ansible-role-maxmind-geoip/master.svg?label=travis_master)](https://travis-ci.org/Temelio/ansible-role-maxmind-geoip)
+[![Build Status](https://img.shields.io/travis/Temelio/ansible-role-maxmind-geoip/develop.svg?label=travis_develop)](https://travis-ci.org/Temelio/ansible-role-maxmind-geoip)
+[![Updates](https://pyup.io/repos/github/Temelio/ansible-role-maxmind-geoip/shield.svg)](https://pyup.io/repos/github/Temelio/ansible-role-maxmind-geoip/)
+[![Python 3](https://pyup.io/repos/github/Temelio/ansible-role-maxmind-geoip/python-3-shield.svg)](https://pyup.io/repos/github/Temelio/ansible-role-maxmind-geoip/)
+[![Ansible Role](https://img.shields.io/ansible/role/17662.svg)](https://galaxy.ansible.com/Temelio/maxmind-geoip/)
 
 Install maxmind-geoip package.
 
