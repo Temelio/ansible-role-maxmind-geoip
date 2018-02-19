@@ -19,7 +19,7 @@ maxmind_geoip_files_mode: 'u-w,g-w,o-rwx'
 #------------------------------------------------------------------------------
 
 # General
-maxmind_geoip_databases_folder: "{{ _maxmind_geoip_databases_folder | default('/usr/share/GeoIP') }}"
+maxmind_geoip_databases_folder: "{{ _maxmind_geoip_databases_folder | default('/usr/share/GeoIP/') }}"
 maxmind_geoip_update_databases: True
 maxmind_geoip_update_databases_with_geoipupdate: True
 
