@@ -2,10 +2,13 @@
 Role tests
 """
 
-from testinfra.utils.ansible_runner import AnsibleRunner
+import os
 import pytest
 
-testinfra_hosts = AnsibleRunner('.molecule/ansible_inventory').get_hosts('all')
+from testinfra.utils.ansible_runner import AnsibleRunner
+
+testinfra_hosts = AnsibleRunner(
+    os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
 
 
 def test_packages(host):
@@ -85,14 +88,8 @@ def test_geoipupdate_databases(host):
 
     databases_folder_path = '/usr/share/GeoIP'
     databases_files = [
-        '{}/GeoIP.dat'.format(databases_folder_path),
-        '{}/GeoIPv6.dat'.format(databases_folder_path),
         '{}/GeoLite2-Country.mmdb'.format(databases_folder_path),
         '{}/GeoLite2-City.mmdb'.format(databases_folder_path),
-        '{}/GeoLiteASNum.dat'.format(databases_folder_path),
-        '{}/GeoLiteCity.dat'.format(databases_folder_path),
-        '{}/GeoLiteCityv6.dat'.format(databases_folder_path),
-        '{}/GeoLiteCountry.dat'.format(databases_folder_path),
     ]
 
     for database_file in databases_files:

@@ -1,6 +1,10 @@
 # maxmind-geoip
 
-[![Build Status](https://travis-ci.org/Temelio/ansible-role-maxmind-geoip.svg?branch=master)](https://travis-ci.org/Temelio/ansible-role-maxmind-geoip)
+[![Build Status](https://img.shields.io/travis/Temelio/ansible-role-maxmind-geoip/master.svg?label=travis_master)](https://travis-ci.org/Temelio/ansible-role-maxmind-geoip)
+[![Build Status](https://img.shields.io/travis/Temelio/ansible-role-maxmind-geoip/develop.svg?label=travis_develop)](https://travis-ci.org/Temelio/ansible-role-maxmind-geoip)
+[![Updates](https://pyup.io/repos/github/Temelio/ansible-role-maxmind-geoip/shield.svg)](https://pyup.io/repos/github/Temelio/ansible-role-maxmind-geoip/)
+[![Python 3](https://pyup.io/repos/github/Temelio/ansible-role-maxmind-geoip/python-3-shield.svg)](https://pyup.io/repos/github/Temelio/ansible-role-maxmind-geoip/)
+[![Ansible Role](https://img.shields.io/ansible/role/17662.svg)](https://galaxy.ansible.com/Temelio/maxmind-geoip/)
 
 Install maxmind-geoip package.
 
@@ -8,15 +12,15 @@ Install maxmind-geoip package.
 
 ## Requirements
 
-This role requires Ansible 2.0 or higher,
+This role requires Ansible 2.2 or higher,
 and platform requirements are listed in the metadata file.
 
 ## Testing
 
 This role use [Molecule](https://github.com/metacloud/molecule/) to run tests.
 
-Locally, you can run tests on Docker (default driver) or Vagrant.
-Travis run tests using Docker driver only.
+Local and Travis tests run tests on Docker by default.
+See molecule documentation to use other backend.
 
 Currently, tests are done on:
 - Debian Jessie
@@ -24,10 +28,9 @@ Currently, tests are done on:
 - Ubuntu Xenial
 
 and use:
-- Ansible 2.0.x
-- Ansible 2.1.x
 - Ansible 2.2.x
 - Ansible 2.3.x
+- Ansible 2.4.x
 
 ### Running tests
 
@@ -37,15 +40,11 @@ and use:
 $ tox
 ```
 
-#### Using Vagrant driver
-
-```
-$ MOLECULE_DRIVER=vagrant tox
-```
-
 ## Role Variables
 
 ### Default role variables
+
+> If you use this role with geoipupdate < 2.5, set **maxmind_geoip_geoipupdate_legacy_version** to True
 
 ``` yaml
 # Defaults vars file for maxmind-geoip role
@@ -86,6 +85,7 @@ maxmind_geoip_databases:
   extension: '.mmdb'
 
 # With geoipupdate
+maxmind_geoip_geoipupdate_legacy_version: False
 maxmind_geoip_geoipupdate_managed: "{{ _maxmind_geoip_geoipupdate_managed }}"
 maxmind_geoip_geoipupdate_changed_when: omit
 maxmind_geoip_geoipupdate_host: 'updates.maxmind.com'
@@ -159,7 +159,7 @@ None
 ``` yaml
 - hosts: servers
   roles:
-     - { role: Temelio.maxmind-geoip }
+    - { role: Temelio.maxmind-geoip }
 ```
 
 ## License
