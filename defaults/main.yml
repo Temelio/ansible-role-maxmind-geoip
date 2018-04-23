@@ -46,7 +46,7 @@ maxmind_geoip_geoipupdate_proxy: ''
 maxmind_geoip_geoipupdate_proxy_user_password: ''
 maxmind_geoip_geoipupdate_skip_peer_verification: 0
 maxmind_geoip_geoipupdate_skip_hostname_verification: 0
-maxmind_geoip_geoipupdate_user_id: 999999
+maxmind_geoip_geoipupdate_user_id: '0'
 maxmind_geoip_geoipupdate_license_key: '000000000000'
 maxmind_geoip_geoipupdate_product_ids:
   - 'GeoLite2-City'
