@@ -52,9 +52,4 @@ maxmind_geoip_geoipupdate_license_key: '000000000000'
 maxmind_geoip_geoipupdate_product_ids:
   - 'GeoLite2-City'
   - 'GeoLite2-Country'
-  - 'GeoLite-Legacy-IPv6-City'
-  - 'GeoLite-Legacy-IPv6-Country'
-  - 506
-  - 517
-  - 533
 maxmind_geoip_configuration_folder_path: "{{ _maxmind_geoip_configuration_folder_path }}"
