@@ -1,8 +1,16 @@
 # {{ ansible_managed }}
 
+{% if maxmind_geoip_geoipupdate_legacy_version %}
 UserId {{ maxmind_geoip_geoipupdate_user_id }}
+{% else %}
+AccountID {{ maxmind_geoip_geoipupdate_user_id }}
+{% endif %}
 LicenseKey {{ maxmind_geoip_geoipupdate_license_key }}
+{% if maxmind_geoip_geoipupdate_legacy_version %}
 ProductIds {{ maxmind_geoip_geoipupdate_product_ids | join(' ') }}
+{% else %}
+EditionIDs {{ maxmind_geoip_geoipupdate_product_ids | join(' ') }}
+{% endif %}
 DatabaseDirectory {{ maxmind_geoip_databases_folder }}
 Host {{ maxmind_geoip_geoipupdate_host }}
 Protocol {{ maxmind_geoip_geoipupdate_protocol }}

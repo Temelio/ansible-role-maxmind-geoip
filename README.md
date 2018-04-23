@@ -44,6 +44,8 @@ $ tox
 
 ### Default role variables
 
+> If you use this role with geoipupdate < 2.5, set **maxmind_geoip_geoipupdate_legacy_version** to True
+
 ``` yaml
 # Defaults vars file for maxmind-geoip role
 #------------------------------------------------------------------------------
@@ -83,6 +85,7 @@ maxmind_geoip_databases:
   extension: '.mmdb'
 
 # With geoipupdate
+maxmind_geoip_geoipupdate_legacy_version: False
 maxmind_geoip_geoipupdate_managed: "{{ _maxmind_geoip_geoipupdate_managed }}"
 maxmind_geoip_geoipupdate_changed_when: omit
 maxmind_geoip_geoipupdate_host: 'updates.maxmind.com'
