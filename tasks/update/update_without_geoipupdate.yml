@@ -24,7 +24,7 @@
   with_items: "{{ maxmind_geoip_archives.files_names }}"
 
 
-- name: 'INSTALL | Extract databases archives'
+- name: 'INSTALL | Extract databases tar.gz archives'
   unarchive:
     src: "{{ item.dest }}"
     dest: "{{ maxmind_geoip_databases.dest_folder_path }}"
@@ -37,10 +37,24 @@
   no_log: True
   register: 'maxmind_geoip_checks_database_unarchive'
   with_items: "{{ maxmind_geoip_checks_database_download.results }}"
-  when: 'item.changed or maxmind_geoip_archives.force_unarchive'
+  when:
+    - "'tar.gz' in item.dest"
+    - 'item.changed or maxmind_geoip_archives.force_unarchive'
 
 
-- name: 'INSTALL | Manage links to current databases'
+- name: 'INSTALL | Extract databases gz archives'
+  shell: "gzip -dkc < {{ item.dest }} > {{ maxmind_geoip_databases.dest_folder_path }}/{{ (item.dest | basename | splitext)[0] }}"
+  args:
+    creates: "{{ maxmind_geoip_databases.dest_folder_path }}/{{ (item.dest | basename | splitext)[0] }}"
+  no_log: True
+  with_items: "{{ maxmind_geoip_checks_database_download.results }}"
+  when:
+    - "'tar.gz' not in item.dest"
+    - "'gz' in item.dest"
+    - 'item.changed or maxmind_geoip_archives.force_unarchive'
+
+
+- name: 'INSTALL | Manage links to current databases for tar.gz archives'
   file:
     src: "{{ maxmind_geoip_databases.dest_folder_path + item.1 }}"
     dest: "{{ maxmind_geoip_databases.dest_folder_path + (item.1 | basename) }}"
@@ -52,4 +66,6 @@
   with_subelements:
     - "{{ maxmind_geoip_checks_database_unarchive.results }}"
     - 'files'
-  when: "maxmind_geoip_databases.extension in item.1"
+  when:
+    - "not maxmind_geoip_databases.legacy"
+    - "maxmind_geoip_databases.extension in item.1"

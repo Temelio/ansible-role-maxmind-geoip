@@ -36,6 +36,7 @@ maxmind_geoip_archives:
 maxmind_geoip_databases:
   dest_folder_path: "{{ maxmind_geoip_databases_folder }}"
   extension: '.mmdb'
+  legacy: False
 
 # With geoipupdate
 maxmind_geoip_geoipupdate_legacy_version: False
