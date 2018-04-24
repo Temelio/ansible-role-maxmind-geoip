@@ -1,7 +1,7 @@
 ---
 
 # Databases update tasks with geoipupdate
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 - name: 'INSTALL | Ensure database folder path exists'
   file:

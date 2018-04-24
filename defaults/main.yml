@@ -1,7 +1,7 @@
 ---
 
 # Defaults vars file for maxmind-geoip role
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 # Packages management
 maxmind_geoip_packages: "{{ _maxmind_geoip_packages }}"
@@ -16,7 +16,7 @@ maxmind_geoip_files_mode: 'u-w,g-w,o-rwx'
 
 
 # Databases updates management
-#------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 # General
 maxmind_geoip_databases_folder: "{{ _maxmind_geoip_databases_folder | default('/usr/share/GeoIP/') }}"
@@ -36,6 +36,7 @@ maxmind_geoip_archives:
 maxmind_geoip_databases:
   dest_folder_path: "{{ maxmind_geoip_databases_folder }}"
   extension: '.mmdb'
+  legacy: False
 
 # With geoipupdate
 maxmind_geoip_geoipupdate_legacy_version: False

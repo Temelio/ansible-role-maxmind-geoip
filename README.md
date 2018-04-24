@@ -45,6 +45,7 @@ $ tox
 ### Default role variables
 
 > If you use this role with geoipupdate < 2.5, set **maxmind_geoip_geoipupdate_legacy_version** to True
+> If you download legacy databases (not managed by geoipupdate since 2018 April 1st), set **maxmind_geoip_databases.legacy** to True.
 
 ``` yaml
 # Defaults vars file for maxmind-geoip role
@@ -83,6 +84,7 @@ maxmind_geoip_archives:
 maxmind_geoip_databases:
   dest_folder_path: "{{ maxmind_geoip_databases_folder }}"
   extension: '.mmdb'
+  legacy: False
 
 # With geoipupdate
 maxmind_geoip_geoipupdate_legacy_version: False
