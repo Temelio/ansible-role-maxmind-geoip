@@ -25,8 +25,8 @@ def test_packages(host):
         ]
     elif host.system_info.distribution == 'ubuntu':
         packages = [
-            'geoip-database',
-            'geoip-bin',
+            'libmaxminddb0',
+            'mmdb-bin',
             'geoipupdate',
         ]
 

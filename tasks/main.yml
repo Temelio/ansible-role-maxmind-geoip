@@ -3,14 +3,14 @@
 # Main tasks file for maxmind-geoip role
 
 - name: 'INIT | Manage variables to use for our target'
-  include: "{{ role_path }}/tasks/manage_variables.yml"
+  include_tasks: "{{ role_path }}/tasks/manage_variables.yml"
   tags:
     - 'role::maxmind-geoip'
     - 'role::maxmind-geoip::init'
 
 
 - name: 'INSTALL | Manage OS family installation tasks'
-  include: "{{ role_path }}/tasks/install/{{ ansible_os_family | lower }}_family.yml"
+  include_tasks: "{{ role_path }}/tasks/install/{{ ansible_os_family | lower }}_family.yml"
   become: True
   tags:
     - 'role::maxmind-geoip'
@@ -18,7 +18,7 @@
 
 
 - name: 'UPDATE DATABASES | Databases update tasks using geoipupdate'
-  include: "{{ role_path }}/tasks/update/update_with_geoipupdate.yml"
+  include_tasks: "{{ role_path }}/tasks/update/update_with_geoipupdate.yml"
   become: True
   when:
     - 'maxmind_geoip_update_databases | bool'
@@ -30,7 +30,7 @@
 
 
 - name: 'UPDATE DATABASES | Databases update tasks without using geoipupdate'
-  include: "{{ role_path }}/tasks/update/update_without_geoipupdate.yml"
+  include_tasks: "{{ role_path }}/tasks/update/update_without_geoipupdate.yml"
   become: True
   when:
     - 'maxmind_geoip_update_databases | bool'
