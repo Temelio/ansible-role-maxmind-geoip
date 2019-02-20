@@ -24,6 +24,12 @@ platforms:
     cap_add:
       - 'SYS_PTRACE'
     privileged: True
+  - name: "maxmind-geoip-docker-bionic"
+    image: 'solita/ubuntu-systemd:18.04'
+    command: '/sbin/init'
+    cap_add:
+      - 'SYS_PTRACE'
+    privileged: True
 provisioner:
   name: 'ansible'
   lint:
@@ -39,6 +45,9 @@ provisioner:
         maxmind_geoip_geoipupdate_changed_when: False
         maxmind_geoip_update_databases_with_geoipupdate: True
       maxmind-geoip-docker-xenial:
+        maxmind_geoip_geoipupdate_changed_when: False
+        maxmind_geoip_update_databases_with_geoipupdate: True
+      maxmind-geoip-docker-bionic:
         maxmind_geoip_geoipupdate_changed_when: False
         maxmind_geoip_update_databases_with_geoipupdate: True
 scenario:

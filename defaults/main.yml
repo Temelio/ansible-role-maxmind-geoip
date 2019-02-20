@@ -22,6 +22,7 @@ maxmind_geoip_files_mode: 'u-w,g-w,o-rwx'
 maxmind_geoip_databases_folder: "{{ _maxmind_geoip_databases_folder | default('/usr/share/GeoIP/') }}"
 maxmind_geoip_update_databases: True
 maxmind_geoip_update_databases_with_geoipupdate: True
+maxmind_geoip_enable_cron: True
 
 # Without geoipupdate
 maxmind_geoip_archives:

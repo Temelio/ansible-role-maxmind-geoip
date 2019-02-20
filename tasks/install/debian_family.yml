@@ -18,6 +18,7 @@
     repo: "{{ item.repo }}"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ maxmind_geoip_repositories }}"
+  when: ansible_distribution_release != "bionic"
 
 
 - name: 'INSTALL | APT | Install MaxMind GeoIP packages'
@@ -27,3 +28,20 @@
     update_cache: True
     cache_valid_time: "{{ maxmind_geoip_package_cache_valid_time }}"
   with_items: "{{ maxmind_geoip_packages }}"
+
+- name: 'INSTALL | CRON | Ensure cron.d directory exists'
+  file:
+    dest: '/etc/cron.d'
+    state: 'directory'
+    owner: 'root'
+  when: maxmind_geoip_enable_cron | bool
+
+- name: 'INSTALL | CRON | automate GeoIP Update with cron'
+  cron:
+    name: "geopipupdate"
+    minute: 0
+    hour: 12
+    user: 'root'
+    job: '/usr/local/bin/geoipupdate'
+    cron_file: geoipupdate
+  when: maxmind_geoip_enable_cron | bool
