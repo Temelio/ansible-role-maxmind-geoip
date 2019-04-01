@@ -2,4 +2,4 @@ docker==3.6.0
 molecule==2.19.0
 pytest==4.3.0
 tox==3.7.0
-testinfra==1.19.0
+testinfra==2.1.0
