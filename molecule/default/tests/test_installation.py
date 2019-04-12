@@ -45,10 +45,13 @@ def test_databases_download(host):
         assert host.file(database_file).exists
         assert host.file(database_file).user == 'root'
         assert host.file(database_file).group == 'root'
-        assert host.file(database_file).mode == 0o777
         assert host.file(host.file(database_file).linked_to).user == 'root'
         assert host.file(host.file(database_file).linked_to).group == 'root'
-        assert host.file(host.file(database_file).linked_to).mode == 0o440
+        if host.system_info.distribution == 'ubuntu':
+            assert host.file(database_file).mode == 0o777
+            assert host.file(host.file(database_file).linked_to).mode == 0o440
+        elif host.system_info.distribution == 'debian':
+            assert host.file(database_file).mode == 0o644
 
 
 def test_geoipupdate_configuration(host):

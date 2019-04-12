@@ -7,7 +7,7 @@ AccountID {{ maxmind_geoip_geoipupdate_user_id }}
 {% endif %}
 LicenseKey {{ maxmind_geoip_geoipupdate_license_key }}
 {% if maxmind_geoip_geoipupdate_legacy_version %}
-ProductIds {{ maxmind_geoip_geoipupdate_product_ids | join(' ') }}
+ProductIds {{ maxmind_geoip_geoipupdate_product_ids }}
 {% else %}
 EditionIDs {{ maxmind_geoip_geoipupdate_product_ids | join(' ') }}
 {% endif %}
