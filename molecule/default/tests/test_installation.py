@@ -16,19 +16,11 @@ def test_packages(host):
     Check if packages are installed
     """
 
-    packages = []
-
-    if host.system_info.distribution == 'debian':
-        packages = [
-            'geoip-database',
-            'geoip-bin',
-        ]
-    elif host.system_info.distribution == 'ubuntu':
-        packages = [
+    packages = [
             'libmaxminddb0',
             'mmdb-bin',
             'geoipupdate',
-        ]
+            ]
 
     for package in packages:
         assert host.package(package).is_installed
@@ -45,14 +37,12 @@ def test_databases_download(host):
     databases_folder_path = '/usr/share/GeoIP'
 
     databases_files = [
-        '{}/GeoLite2-ASN.mmdb'.format(databases_folder_path),
         '{}/GeoLite2-City.mmdb'.format(databases_folder_path),
         '{}/GeoLite2-Country.mmdb'.format(databases_folder_path),
     ]
 
     for database_file in databases_files:
         assert host.file(database_file).exists
-        assert host.file(database_file).is_symlink
         assert host.file(database_file).user == 'root'
         assert host.file(database_file).group == 'root'
         assert host.file(database_file).mode == 0o777

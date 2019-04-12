@@ -1,0 +1,11 @@
+---
+
+_maxmind_geoip_repositories:
+  - repo: 'ppa:maxmind/ppa'
+    codename: 'xenial'
+
+_maxmind_geoip_packages:
+  - name: 'libmaxminddb0'
+  - name: 'libmaxminddb-dev'
+  - name: 'mmdb-bin'
+  - name: 'geoipupdate'

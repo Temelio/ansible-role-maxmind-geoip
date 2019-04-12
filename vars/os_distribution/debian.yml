@@ -3,7 +3,7 @@
 # Debian OS variables
 # -----------------------------------------------------------------------------
 
-_maxmind_geoip_geoipupdate_managed: False
+_maxmind_geoip_geoipupdate_managed: True
 
 _maxmind_geoip_packages:
   - name: 'geoip-database'

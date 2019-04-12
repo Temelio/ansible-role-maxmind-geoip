@@ -18,7 +18,6 @@
     repo: "{{ item.repo }}"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ maxmind_geoip_repositories }}"
-  when: ansible_distribution_release != "bionic"
 
 
 - name: 'INSTALL | APT | Install MaxMind GeoIP packages'

@@ -1,14 +1,14 @@
 # maxmind-geoip
 
+[![License](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://img.shields.io/travis/Temelio/ansible-role-maxmind-geoip/master.svg?label=travis_master)](https://travis-ci.org/Temelio/ansible-role-maxmind-geoip)
 [![Build Status](https://img.shields.io/travis/Temelio/ansible-role-maxmind-geoip/develop.svg?label=travis_develop)](https://travis-ci.org/Temelio/ansible-role-maxmind-geoip)
 [![Updates](https://pyup.io/repos/github/Temelio/ansible-role-maxmind-geoip/shield.svg)](https://pyup.io/repos/github/Temelio/ansible-role-maxmind-geoip/)
 [![Python 3](https://pyup.io/repos/github/Temelio/ansible-role-maxmind-geoip/python-3-shield.svg)](https://pyup.io/repos/github/Temelio/ansible-role-maxmind-geoip/)
 [![Ansible Role](https://img.shields.io/ansible/role/17662.svg)](https://galaxy.ansible.com/Temelio/maxmind-geoip/)
+[![GitHub tag](https://img.shields.io/github/tag/temelio/ansible-role-maxmind-geoip.svg)](https://github.com/Temelio/ansible-role-maxmind-geoip/tags)
 
 Install maxmind-geoip2 package.
-
-> "geoipupdate" is managed only for Ubuntu via ppa, except for Bionic
 
 ## Requirements
 
@@ -23,7 +23,7 @@ Local and Travis tests run tests on Docker by default.
 See molecule documentation to use other backend.
 
 Currently, tests are done on:
-- Debian Jessie
+- Debian Stretch
 - Ubuntu Trusty
 - Ubuntu Xenial
 - Ubuntu Bionic
@@ -130,7 +130,7 @@ _maxmind_geoip_configuration_folder_path: '/etc/geoip/'
 # Debian OS variables
 #------------------------------------------------------------------------------
 
-_maxmind_geoip_geoipupdate_managed: False
+_maxmind_geoip_geoipupdate_managed: True
 
 _maxmind_geoip_packages:
   - name: 'geoip-database'
