@@ -7,8 +7,8 @@ driver:
 lint:
   name: 'yamllint'
 platforms:
-  - name: "maxmind-geoip-docker-jessie"
-    image: 'minimum2scp/systemd-jessie:latest'
+  - name: "maxmind-geoip-docker-stretch"
+    image: 'minimum2scp/systemd-stretch:latest'
     command: '/sbin/init'
     cap_add:
       - 'SYS_PTRACE'
@@ -39,8 +39,9 @@ provisioner:
       all:
         maxmind_geoip_update_databases: True
     host_vars:
-      maxmind-geoip-docker-jessie:
-        maxmind_geoip_update_databases_with_geoipupdate: False
+      maxmind-geoip-docker-stretch:
+        maxmind_geoip_geoipupdate_changed_when: False
+        maxmind_geoip_update_databases_with_geoipupdate: True
       maxmind-geoip-docker-trusty:
         maxmind_geoip_geoipupdate_changed_when: False
         maxmind_geoip_update_databases_with_geoipupdate: True

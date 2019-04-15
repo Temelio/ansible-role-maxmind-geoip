@@ -21,9 +21,9 @@
   include_tasks: "{{ role_path }}/tasks/update/update_with_geoipupdate.yml"
   become: True
   when:
-    - 'maxmind_geoip_update_databases | bool'
-    - 'maxmind_geoip_geoipupdate_managed | bool'
-    - 'maxmind_geoip_update_databases_with_geoipupdate | bool'
+    - maxmind_geoip_update_databases
+    - maxmind_geoip_geoipupdate_managed
+    - maxmind_geoip_update_databases_with_geoipupdate
   tags:
     - 'role::maxmind-geoip'
     - 'role::maxmind-geoip::update-databases'
@@ -33,8 +33,8 @@
   include_tasks: "{{ role_path }}/tasks/update/update_without_geoipupdate.yml"
   become: True
   when:
-    - 'maxmind_geoip_update_databases | bool'
-    - 'not maxmind_geoip_update_databases_with_geoipupdate | bool'
+    - maxmind_geoip_update_databases
+    - not maxmind_geoip_update_databases_with_geoipupdate
   tags:
     - 'role::maxmind-geoip'
     - 'role::maxmind-geoip::update-databases'

@@ -1,0 +1,5 @@
+---
+
+_maxmind_geoip_repositories:
+  - repo: 'ppa:maxmind/ppa'
+    codename: 'xenial'
