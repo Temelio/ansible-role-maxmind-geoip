@@ -1,6 +1,6 @@
 docker==3.7.2
 molecule==2.20.0
-pytest==4.4.0
+pytest==5.2.3
 six==1.11.0
 tox==3.8.6
 testinfra==1.19.0
