@@ -1,4 +1,4 @@
-docker==3.7.2
+docker==4.2.0
 molecule==2.20.0
 pytest==4.4.0
 six==1.11.0
